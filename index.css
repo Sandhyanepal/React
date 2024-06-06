@@ -1,0 +1,26 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+.header{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    box-shadow: 0 10px 6px -6px #777;
+    padding: 20px 0;
+    
+}
+h1{
+    color: brown;
+}
+.center{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.center input{
+    padding: 5px 50px 5px 5px;
+}
+.icon{
+    font-size: 20px;
+}
