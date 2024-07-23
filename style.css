@@ -22,12 +22,15 @@
 
 
 /* Body CSS */
+.search-container{
+    padding-top: 20px;
+}
 
 .restaurant-list{
     display: flex;
     flex-wrap: wrap;
     justify-content:center;
-    padding-top: 50px;
+    padding-top: 30px;
 }
 
 .card{

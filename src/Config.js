@@ -1,33 +1,6 @@
-import React from 'react'
-import ReactDOM from 'react-dom/client'
-import './style.css'
+export const IMG_CDN_URL = "https://media-assets.swiggy.com/swiggy/";
 
-const Logo = () => {
-    return (
-        <a href="/">
-            <img className="logo" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSMUUUu25tsTycvzJBz4rhpvHASr2A2SOe0Z4ehrkk_Mg2bKikVNJDoOPuzxAhJr6WEv2A&usqp=CAU" alt='Silver Spoon logo' />
-        </a>
-    )
-}
-
-const Header = () => {
-    return (
-        <nav className='navbar'>
-            <Logo />
-            <div className='nav-items'>
-                <ul>
-                    <li>About</li>
-                    <li>Menu</li>
-                    <li>Contact</li>
-                    <li><i className="fa-solid fa-cart-shopping"></i></li>
-                </ul>
-            </div>
-        </nav>
-    )
-}
-
-
-const restaurantList = [
+export const restaurantList = [ 
     {
         type: "restaurant",
         data: {
@@ -626,55 +599,3 @@ const restaurantList = [
     },
 
 ];
-
-
-const RestaurantCard = ({
-    cloudinaryImageId,
-    name,
-    cuisines,
-    area,
-    // costForTwo,
-    avgRating,
-}) => {
-    return (
-        <div className="card">
-            <img src={"https://media-assets.swiggy.com/swiggy/" + cloudinaryImageId} />
-            <div className='card-details'>
-                <h3>{name}</h3>
-                <h5>{cuisines.join(", ")}</h5>
-                <h4>{area}</h4>
-                <h4>
-                    <i class="fa-solid fa-star"></i>
-                    {avgRating}
-                </h4>
-            </div>
-            {/* <h4>{costForTwo}</h4> */}
-
-        </div>
-    );
-};
-
-const Body = () => {
-    return (
-        <div className="restaurant-list">
-            {restaurantList.map((restaurant) => {
-                return <RestaurantCard key={restaurant.data.id} {...restaurant.data} />;
-            })}
-        </div>
-    );
-};
-
-
-const AppLayout = () => {
-    return (
-        <React.Fragment>
-            <Header />
-            <Body />
-        </React.Fragment>
-    );
-};
-
-
-
-const root = ReactDOM.createRoot(document.getElementById("root"));
-root.render(<AppLayout />)
