@@ -1,4 +1,5 @@
-import React from 'react'
+import React, { useState } from 'react'
+
 
 const Logo = () => {
     return (
@@ -10,6 +11,7 @@ const Logo = () => {
 
 const Header = () => {
 
+    const [isLoggedIn, setIsLoggedIn] = useState(true);
 
 
   return (
@@ -21,6 +23,11 @@ const Header = () => {
                     <li>Menu</li>
                     <li>Contact</li>
                     <li><i className="fa-solid fa-cart-shopping"></i></li>
+                    {
+                        isLoggedIn ? <li><button onClick={() => {setIsLoggedIn(false)}}>Login</button></li> : <li><button onClick={() => {setIsLoggedIn(true)}}>Logout</button></li>
+                    }
+                    
+                    
                 </ul>
             </div>
         </nav>
