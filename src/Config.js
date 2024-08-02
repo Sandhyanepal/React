@@ -599,3 +599,7 @@ export const restaurantList = [
     },
 
 ];
+
+export const Silver_Spoon_API = "https://foodfire.onrender.com/api/restaurants?lat=21.1702401&lng=72.83106070000001&page_type=DESKTOP_WEB_LISTIN"
+
+export const Silver_Spoon_Menu_API = "https://foodfire.onrender.com/api/menu?page-type=REGULAR_MENU&complete-menu=true&lat=21.1702401&lng=72.83106070000001&&submitAction=ENTER&restaurantId="

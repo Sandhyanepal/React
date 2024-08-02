@@ -2,6 +2,10 @@ import { useEffect, useState } from "react";
 // import { restaurantList } from "../Config";
 import RestaurantCard from "./RestaurantCard";
 import Shimmer from "./Shimmer";
+import { Silver_Spoon_API } from "../Config";
+import { Link } from "react-router-dom";
+
+
 
 const Body = () => {
     const [searchText, setSearchText] = useState(); //returns = [variable name, function to update the variable]
@@ -9,30 +13,30 @@ const Body = () => {
     const [allRestaurants, setAllRestaurants] = useState([]);
     const [filteredRestaurants, setFilteredRestaurants] = useState([]);
 
-    function filterData(searchText, allRestaurants){
+    function filterData(searchText, allRestaurants) {
         return allRestaurants.filter((restaurants) => restaurants?.info?.name?.toLowerCase().includes(searchText.toLowerCase()));
     }
 
     useEffect(() => {
         // API Call
         getRestaurants();
-      }, []);
+    }, []);
 
 
 
-    async function getRestaurants() {
+    const getRestaurants = async () => {
         try {
-            const response = await fetch(
-                "https://www.swiggy.com/dapi/restaurants/list/v5?lat=12.9351929&lng=77.62448069999999&page_type=DESKTOP_WEB_LISTING"
-            );
+
+            const response = await fetch(Silver_Spoon_API);
             const json = await response.json();
             console.log("API Response:", json);
-            const restaurants = json?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle?.restaurants;
+            const restaurants = json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants;
             setAllRestaurants(restaurants);
             setFilteredRestaurants(restaurants);
         } catch (error) {
             console.error("Failed to fetch restaurants:", error);
             setAllRestaurants([]);
+            setFilteredRestaurants([]);
         }
     }
 
@@ -40,16 +44,16 @@ const Body = () => {
     // Conditional Rendering
 
 
-    return allRestaurants?.length === 0 ? (<Shimmer/>) : (
+    return allRestaurants?.length === 0 ? (<Shimmer />) : (
         <>
             <div className="search-container">
-                <input 
-                    type="text" 
-                    className="search-input" 
-                    placeholder="Search" 
+                <input
+                    type="text"
+                    className="search-input"
+                    placeholder="Search"
                     value={searchText}
-                    onChange={(e)=>{setSearchText(e.target.value)}}
-                    />
+                    onChange={(e) => { setSearchText(e.target.value) }}
+                />
                 <button className="search-btn"
                     onClick={() => {
                         // need to filter data
@@ -61,7 +65,11 @@ const Body = () => {
             </div>
             <div className="restaurant-list">
                 {filteredRestaurants?.map((restaurant) => {
-                    return <RestaurantCard key={restaurant?.info.id} {...restaurant?.info} />;
+                    return (
+                        <Link to={"/restaurant/" + restaurant?.info.id} key={restaurant?.info.id}>
+                            <RestaurantCard  {...restaurant?.info} />
+                        </Link>
+                    );
                 })}
             </div>
         </>
